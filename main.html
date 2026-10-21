@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Калькулятор</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      min-height: 100vh; margin: 0; display: grid; place-items: center; padding: 24px;
+      color: #f7f8ff; font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+      background: radial-gradient(circle at 18% 18%, #33417e 0, transparent 34%), radial-gradient(circle at 82% 76%, #693c76 0, transparent 32%), #111323;
+    }
+    .calculator {
+      width: min(100%, 360px); padding: 24px; border: 1px solid rgba(255,255,255,.15); border-radius: 30px;
+      background: rgba(23, 26, 47, .78); box-shadow: 0 24px 70px rgba(0,0,0,.42); backdrop-filter: blur(20px);
+    }
+    .screen { min-height: 136px; padding: 17px 8px 20px; display: flex; flex-direction: column; justify-content: flex-end; text-align: right; overflow: hidden; }
+    .history { min-height: 25px; color: #a8adca; font-size: 1rem; letter-spacing: .03em; }
+    .display { overflow: hidden; font-size: clamp(2.75rem, 12vw, 4.35rem); font-weight: 650; letter-spacing: -.06em; line-height: 1.1; text-overflow: ellipsis; }
+    .keys { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    button { aspect-ratio: 1; border: 0; border-radius: 18px; color: inherit; background: #30344d; cursor: pointer; font: inherit; font-size: 1.35rem; font-weight: 600; transition: transform .15s, filter .15s, background .15s; }
+    button:hover { filter: brightness(1.14); transform: translateY(-2px); }
+    button:active { transform: scale(.94); }
+    .utility { color: #25283e; background: #d7dbeb; }
+    .operator { color: #fff; background: linear-gradient(145deg, #8b67ff, #6645e7); }
+    .equals { background: linear-gradient(145deg, #ff7b8d, #e44e7b); }
+    .zero { grid-column: span 2; aspect-ratio: auto; text-align: left; padding-left: 26px; }
+    @media (max-width: 380px) { body { padding: 12px; } .calculator { padding: 18px; border-radius: 25px; } .keys { gap: 9px; } button { border-radius: 15px; } }
+  </style>
+</head>
+<body>
+  <main class="calculator" aria-label="Калькулятор">
+    <section class="screen" aria-live="polite">
+      <div class="history"></div>
+      <div class="display">0</div>
+    </section>
+    <section class="keys" aria-label="Кнопки калькулятора">
+      <button class="utility" data-action="clear">AC</button><button class="utility" data-action="sign">±</button><button class="utility" data-action="percent">%</button><button class="operator" data-operator="÷">÷</button>
+      <button data-number="7">7</button><button data-number="8">8</button><button data-number="9">9</button><button class="operator" data-operator="×">×</button>
+      <button data-number="4">4</button><button data-number="5">5</button><button data-number="6">6</button><button class="operator" data-operator="−">−</button>
+      <button data-number="1">1</button><button data-number="2">2</button><button data-number="3">3</button><button class="operator" data-operator="+">+</button>
+      <button class="zero" data-number="0">0</button><button data-decimal>,</button><button class="operator equals" data-action="equals">=</button>
+    </section>
+  </main>
+  <script src="index.js"></script>
+</body>
+</html>
